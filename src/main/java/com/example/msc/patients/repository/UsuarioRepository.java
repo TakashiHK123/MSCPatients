@@ -3,7 +3,7 @@ package com.example.msc.patients.repository;
 
 import com.example.msc.patients.entity.Usuario;
 
-import com.example.msc.patients.rowMapper.UsuariosRowMapper;
+import com.example.msc.patients.rowMapper.UsuarioRowMapper;
 import com.example.msc.patients.sqlerrorcode.CustomSQLErrorCodeTranslator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -16,7 +16,7 @@ import java.sql.Statement;
 import java.util.List;
 import java.util.Map;
 
-public class UsuariosRepository {
+public class UsuarioRepository {
 
     private static final String SQL="SELECT * FROM usuarios ";
     private static final String SQL_POST = "INSERT INTO usuarios (username, password, id_datos_personales) VALUES (?, ?, ?)";
@@ -33,7 +33,7 @@ public class UsuariosRepository {
     }
     //GET all
     public List<Usuario> getAll() {  //ver si se va a usar, si no se elimina
-        return jdbcTemplate.query(SQL, new UsuariosRowMapper());
+        return jdbcTemplate.query(SQL, new UsuarioRowMapper());
     }
     //POST retorna un retorna el id si se genera, y si no retorna un 0 
     public int addUsuarios(String nombre, String apellido, String estado, int idDatosPersonales){
@@ -62,7 +62,7 @@ public class UsuariosRepository {
     }
     // GET Obtener usuario
     public Usuario getusuario(int idusuario) {
-        Usuario usuario = jdbcTemplate.queryForObject(SQL_GET, new Object[] { idusuario }, new UsuariosRowMapper());
+        Usuario usuario = jdbcTemplate.queryForObject(SQL_GET, new Object[] { idusuario }, new UsuarioRowMapper());
         if(usuario!=null){
             return usuario;
         }else{

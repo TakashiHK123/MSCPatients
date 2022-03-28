@@ -12,7 +12,7 @@ import java.io.Serializable;
 import java.sql.Date;
 
 @Entity
-public class DatosPersonale implements Serializable {
+public class DatoPersonal implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @NotNull
@@ -34,10 +34,10 @@ public class DatosPersonale implements Serializable {
     @NotNull
     private double peso;
 
-    public DatosPersonale() {
+    public DatoPersonal() {
     }
 
-    public DatosPersonale(@NotNull int idDatosPersonales, String nombre, String apellido, String nroDocumento, Date fechaNacimiento, @NotNull double peso) {
+    public DatoPersonal(@NotNull int idDatosPersonales, String nombre, String apellido, String nroDocumento, Date fechaNacimiento, @NotNull double peso) {
         this.idDatosPersonales = idDatosPersonales;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -96,7 +96,7 @@ public class DatosPersonale implements Serializable {
 
     @Override
     public String toString() {
-        return "DatosPersonale{" +
+        return "DatoPersonal{" +
                 "idDatosPersonales=" + idDatosPersonales +
                 ", nombre='" + nombre + '\'' +
                 ", apellido='" + apellido + '\'' +

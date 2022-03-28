@@ -8,7 +8,7 @@ import javax.persistence.Entity;
 import java.io.Serializable;
 import java.sql.Date;
 @Entity
-public class Paciente implements Serializable {
+public class Paciente extends DatoPersonal implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @NotNull
@@ -23,9 +23,10 @@ public class Paciente implements Serializable {
     public Paciente() {
     }
 
-    public Paciente(int idPaciente, int idDatosPersonales, Date fechaIngreso, String estado) {
+    public Paciente(@org.jetbrains.annotations.NotNull int idDatosPersonales, String nombre, String apellido, String nroDocumento, Date fechaNacimiento, @org.jetbrains.annotations.NotNull double peso, int idPaciente, int idDatosPersonales1, Date fechaIngreso, String estado) {
+        super(idDatosPersonales, nombre, apellido, nroDocumento, fechaNacimiento, peso);
         this.idPaciente = idPaciente;
-        this.idDatosPersonales = idDatosPersonales;
+        this.idDatosPersonales = idDatosPersonales1;
         this.fechaIngreso = fechaIngreso;
         this.estado = estado;
     }
@@ -38,10 +39,12 @@ public class Paciente implements Serializable {
         this.idPaciente = idPaciente;
     }
 
+    @Override
     public int getIdDatosPersonales() {
         return idDatosPersonales;
     }
 
+    @Override
     public void setIdDatosPersonales(int idDatosPersonales) {
         this.idDatosPersonales = idDatosPersonales;
     }

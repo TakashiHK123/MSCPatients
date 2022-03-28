@@ -1,6 +1,6 @@
 package com.example.msc.patients.dto;
 
-import com.example.msc.patients.entity.Contactos;
+import com.example.msc.patients.entity.Contacto;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotEmpty;
@@ -32,12 +32,12 @@ public class ObtenerPascientesDTO implements Serializable {
     @Min(1)
     @Max(15)
     private String numeroDocumento;
-    private List<Contactos> contactos;
+    private List<Contacto> contacto;
 
     public ObtenerPascientesDTO() {
     }
 
-    public ObtenerPascientesDTO(@NotNull int id, String primerNombre, String ultimoNombre, @NotNull Date fechaIngreso, @NotNull Date fechaNacimiento, @NotNull double peso, String numeroDocumento, List<Contactos> contactos) {
+    public ObtenerPascientesDTO(@NotNull int id, String primerNombre, String ultimoNombre, @NotNull Date fechaIngreso, @NotNull Date fechaNacimiento, @NotNull double peso, String numeroDocumento, List<Contacto> contacto) {
         this.id = id;
         this.primerNombre = primerNombre;
         this.ultimoNombre = ultimoNombre;
@@ -45,7 +45,7 @@ public class ObtenerPascientesDTO implements Serializable {
         this.fechaNacimiento = fechaNacimiento;
         this.peso = peso;
         this.numeroDocumento = numeroDocumento;
-        this.contactos = contactos;
+        this.contacto = contacto;
     }
 
     public int getId() {
@@ -104,11 +104,11 @@ public class ObtenerPascientesDTO implements Serializable {
         this.numeroDocumento = numeroDocumento;
     }
 
-    public List<Contactos> getContactos() {
-        return contactos;
+    public List<Contacto> getContactos() {
+        return contacto;
     }
 
-    public void setContactos(List<Contactos> contactos) {
-        this.contactos = contactos;
+    public void setContactos(List<Contacto> contactos) {
+        this.contacto = contactos;
     }
 }

@@ -8,7 +8,7 @@ import jakarta.validation.constraints.NotNull;
 import javax.persistence.Entity;
 import java.io.Serializable;
 @Entity
-public class Contactos implements Serializable {
+public class Contacto implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @NotNull
@@ -22,10 +22,10 @@ public class Contactos implements Serializable {
     @NotNull
     private int idDatosPersonales;
 
-    public Contactos() {
+    public Contacto() {
     }
 
-    public Contactos(int idContacto, String tipo, String valor, int idDatosPersonales) {
+    public Contacto(int idContacto, String tipo, String valor, int idDatosPersonales) {
         this.idContacto = idContacto;
         this.tipo = tipo;
         this.valor = valor;
