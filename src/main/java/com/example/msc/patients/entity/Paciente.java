@@ -1,77 +1,49 @@
 package com.example.msc.patients.entity;
 
 
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.NotNull;
 
-import javax.persistence.Entity;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Id;
+
+import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Date;
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
+@Table(name = "pacientes")
 public class Paciente extends DatoPersonal implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    @NotNull
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Size(min = 1, max = 18)
+    @Column(name = "id_paciente", nullable = false, length = 18)
     private int idPaciente;
+
+    @Basic(optional = false)
     @NotNull
+    @Size(min = 1, max = 18)
+    @Column(name = "id_datos_personales", nullable = false, length = 18)
     private int idDatosPersonales;
-    @NotNull
+
+    @Basic(optional = false)
+    @org.jetbrains.annotations.NotNull
+    @Column(name = "fecha_nacimiento", nullable = false)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date fechaIngreso;
-    @NotEmpty
+
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 1)
+    @Column(name = "estado", nullable = false, length = 1)
     private String estado;
 
-    public Paciente() {
-    }
 
-    public Paciente(@org.jetbrains.annotations.NotNull int idDatosPersonales, String nombre, String apellido, String nroDocumento, Date fechaNacimiento, @org.jetbrains.annotations.NotNull double peso, int idPaciente, int idDatosPersonales1, Date fechaIngreso, String estado) {
-        super(idDatosPersonales, nombre, apellido, nroDocumento, fechaNacimiento, peso);
-        this.idPaciente = idPaciente;
-        this.idDatosPersonales = idDatosPersonales1;
-        this.fechaIngreso = fechaIngreso;
-        this.estado = estado;
-    }
-
-    public int getIdPaciente() {
-        return idPaciente;
-    }
-
-    public void setIdPaciente(int idPaciente) {
-        this.idPaciente = idPaciente;
-    }
-
-    @Override
-    public int getIdDatosPersonales() {
-        return idDatosPersonales;
-    }
-
-    @Override
-    public void setIdDatosPersonales(int idDatosPersonales) {
-        this.idDatosPersonales = idDatosPersonales;
-    }
-
-    public Date getFechaIngreso() {
-        return fechaIngreso;
-    }
-
-    public void setFechaIngreso(Date fechaIngreso) {
-        this.fechaIngreso = fechaIngreso;
-    }
-
-    public String getEstado() {
-        return estado;
-    }
-
-    public void setEstado(String estado) {
-        this.estado = estado;
-    }
-
-    @Override
-    public String toString() {
-        return "Paciente{" +
-                "idPaciente=" + idPaciente +
-                ", idDatosPersonales=" + idDatosPersonales +
-                ", fechaIngreso=" + fechaIngreso +
-                ", estado='" + estado + '\'' +
-                '}';
-    }
 }

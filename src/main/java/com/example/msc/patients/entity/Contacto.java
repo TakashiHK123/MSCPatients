@@ -1,76 +1,47 @@
 package com.example.msc.patients.entity;
 
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Table;
 
-import javax.persistence.Entity;
+import javax.persistence.*;
 import java.io.Serializable;
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
+@Table(name = "contactos")
 public class Contacto implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    @NotNull
-    @Min(0)
-    @Max(999999)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Size(min = 1, max = 18)
+    @Column(name = "id_contacto", nullable = false, length = 18)
     private int idContacto;
-    @NotEmpty
-    private String tipo;
-    @NotEmpty
-    private String valor;
+
+    @Basic(optional = false)
     @NotNull
+    @Size(min = 1, max = 1)
+    @Column(name = "tipo", nullable = false, length = 1)
+    private String tipo;
+
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 200)
+    @Column(name = "valor", nullable = false, length = 200)
+    private String valor;
+
+
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1 , max = 18)
+    @Column(name = "id_datos_personales", nullable = false, length = 18)
     private int idDatosPersonales;
 
-    public Contacto() {
-    }
 
-    public Contacto(int idContacto, String tipo, String valor, int idDatosPersonales) {
-        this.idContacto = idContacto;
-        this.tipo = tipo;
-        this.valor = valor;
-        this.idDatosPersonales = idDatosPersonales;
-    }
-
-    public int getIdContacto() {
-        return idContacto;
-    }
-
-    public void setIdContacto(int idContacto) {
-        this.idContacto = idContacto;
-    }
-
-    public String getTipo() {
-        return tipo;
-    }
-
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
-    }
-
-    public String getValor() {
-        return valor;
-    }
-
-    public void setValor(String valor) {
-        this.valor = valor;
-    }
-
-    public int getIdDatosPersonales() {
-        return idDatosPersonales;
-    }
-
-    public void setIdDatosPersonales(int idDatosPersonales) {
-        this.idDatosPersonales = idDatosPersonales;
-    }
-
-    @Override
-    public String toString() {
-        return "Contactos{" +
-                "idContacto=" + idContacto +
-                ", tipo='" + tipo + '\'' +
-                ", valor='" + valor + '\'' +
-                ", idDatosPersonales=" + idDatosPersonales +
-                '}';
-    }
 }

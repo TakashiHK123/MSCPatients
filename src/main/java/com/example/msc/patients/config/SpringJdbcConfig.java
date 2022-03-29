@@ -26,9 +26,5 @@ public class SpringJdbcConfig {
     public SimpleJdbcInsert simpleJdbcInsert(){
         return  new SimpleJdbcInsert(postgresqlDataSource());
     }
-    @Bean("sjc")
-    public SimpleJdbcCall simpleJdbcCall(){
-        return new SimpleJdbcCall(postgresqlDataSource());
-    }
 
 }

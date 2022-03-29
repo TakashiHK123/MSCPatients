@@ -16,7 +16,6 @@ public class ContactoRowMapper implements RowMapper<Contacto> {
         contacto.setTipo(resultSet.getString("tipo"));
         contacto.setValor(resultSet.getString("valor"));
         contacto.setIdDatosPersonales(resultSet.getInt("id_datos_personales"));
-
         return contacto;
     }
 }

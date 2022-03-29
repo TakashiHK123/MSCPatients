@@ -1,109 +1,61 @@
 package com.example.msc.patients.entity;
 
 
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.jetbrains.annotations.NotNull;
+import org.springframework.data.annotation.Id;
 
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Date;
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
+@Table(name = "datosPersonales")
 public class DatoPersonal implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    @NotNull
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Size(min = 1, max = 18)
+    @Column(name = "id_datos_personales", nullable = false, length = 18)
     private int idDatosPersonales;
-    @NotEmpty
-    @Min(1)
-    @Max(100)
-    private String nombre;
-    @NotEmpty
-    @Min(1)
-    @Max(100)
-    private String apellido;
-    @NotEmpty
-    @Min(1)
-    @Max(15)
-    private String nroDocumento;
-    @NotEmpty
-    private Date fechaNacimiento;
+
+    @Basic(optional = false)
     @NotNull
+    @Size(min = 1, max = 100)
+    @Column(name = "nombre", nullable = false, length = 100)
+    private String nombre;
+
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 100)
+    @Column(name = "apellido", nullable = false, length = 100)
+    private String apellido;
+
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 15)
+    @Column(name = "nro_documento", nullable = false, length = 15)
+    private String nroDocumento;
+
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "fecha_nacimiento", nullable = false)
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date fechaNacimiento;
+
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 3)
+    @Column(name = "peso", nullable = false, length = 3)
     private double peso;
-
-    public DatoPersonal() {
-    }
-
-    public DatoPersonal(@NotNull int idDatosPersonales, String nombre, String apellido, String nroDocumento, Date fechaNacimiento, @NotNull double peso) {
-        this.idDatosPersonales = idDatosPersonales;
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.nroDocumento = nroDocumento;
-        this.fechaNacimiento = fechaNacimiento;
-        this.peso = peso;
-    }
-
-    public int getIdDatosPersonales() {
-        return idDatosPersonales;
-    }
-
-    public void setIdDatosPersonales(int idDatosPersonales) {
-        this.idDatosPersonales = idDatosPersonales;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getApellido() {
-        return apellido;
-    }
-
-    public void setApellido(String apellido) {
-        this.apellido = apellido;
-    }
-
-    public String getNroDocumento() {
-        return nroDocumento;
-    }
-
-    public void setNroDocumento(String nroDocumento) {
-        this.nroDocumento = nroDocumento;
-    }
-
-    public Date getFechaNacimiento() {
-        return fechaNacimiento;
-    }
-
-    public void setFechaNacimiento(Date fechaNacimiento) {
-        this.fechaNacimiento = fechaNacimiento;
-    }
-
-    public double getPeso() {
-        return peso;
-    }
-
-    public void setPeso(double peso) {
-        this.peso = peso;
-    }
-
-    @Override
-    public String toString() {
-        return "DatoPersonal{" +
-                "idDatosPersonales=" + idDatosPersonales +
-                ", nombre='" + nombre + '\'' +
-                ", apellido='" + apellido + '\'' +
-                ", nroDocumento='" + nroDocumento + '\'' +
-                ", fechaNacimiento=" + fechaNacimiento +
-                ", peso=" + peso +
-                '}';
-    }
 
 }

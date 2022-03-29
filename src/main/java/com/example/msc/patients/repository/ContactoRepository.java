@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 import javax.sql.DataSource;
 import java.sql.PreparedStatement;
 import java.sql.Statement;
+import java.util.List;
 import java.util.Map;
 
 
@@ -19,7 +20,7 @@ import java.util.Map;
 public class ContactoRepository {
 
     private static final String SQL_INSERT = "INSERT INTO contacto (type, value, id_datos_personales) VALUES (?, ?, ?)";
-    private static final String SQL_GET = "SELECT * FROM contacto WHERE id_contacto=?";
+    private static final String SQL_GET = "SELECT * FROM contacto WHERE id_datos_personales=?";
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
@@ -36,10 +37,12 @@ public class ContactoRepository {
         return jdbcTemplate.update(SQL_INSERT, type, value, idDatosPersonales);
     }
 
-    public Contacto getContacto(int idContacto) {
-        Contacto contacto = jdbcTemplate.queryForObject(SQL_GET, new Object[] { idContacto }, new ContactoRowMapper());
-        if(contacto!=null){
-            return contacto;
+    //Buscar todos los contactos por el idDatosPersonales coincidentes.
+    public List<Contacto> getContactos(int idDatosPersonales) {
+
+        List<Contacto> contactos = jdbcTemplate.query(SQL_GET, new Object[] { idDatosPersonales }, new ContactoRowMapper());
+        if(contactos!=null){
+            return contactos;
         }else{
             return null;
         }

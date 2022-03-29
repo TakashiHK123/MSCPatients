@@ -33,6 +33,7 @@ public class PacienteConverter {
         model.setFechaNacimiento(entity.getFechaNacimiento());
         model.setPeso(entity.getPeso());
         model.setNro_documento(entity.getNroDocumento());
+
         return model;
     }
 

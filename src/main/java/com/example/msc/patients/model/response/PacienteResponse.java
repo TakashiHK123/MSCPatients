@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.sql.Date;
+import java.util.List;
 
 
 @Data
@@ -29,6 +30,6 @@ public class PacienteResponse {
     @JsonProperty("document_number")
     private String nro_documento;
     @JsonProperty("contacts")
-    private Contacto contacto;
+    private List<Contacto> contacto;
 
 }
