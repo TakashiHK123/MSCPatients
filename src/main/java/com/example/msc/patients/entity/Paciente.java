@@ -34,7 +34,7 @@ public class Paciente extends DatoPersonal implements Serializable {
     private int idDatosPersonales;
 
     @Basic(optional = false)
-    @org.jetbrains.annotations.NotNull
+    @NotNull
     @Column(name = "fecha_nacimiento", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaIngreso;

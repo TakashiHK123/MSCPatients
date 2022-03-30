@@ -28,9 +28,9 @@ public class PacienteConverter {
         if(entity == null)
             return null;
         PacienteResponse model = new PacienteResponse();
-        ContactoRepository contactoRepository = new ContactoRepository();
+        //ContactoRepository contactoRepository = new ContactoRepository();
         List<Contacto> contactos = new ArrayList<>();
-        contactos = contactoRepository.getContactos(entity.getIdDatosPersonales());
+        //contactos = contactoRepository.getContactos(entity.getIdDatosPersonales());
         model.setIdPaciente(entity.getIdPaciente());
         model.setNombre(entity.getNombre());
         model.setApellido(entity.getApellido());

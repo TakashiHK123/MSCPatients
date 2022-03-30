@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
+import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
 import java.sql.PreparedStatement;
@@ -16,10 +17,11 @@ import java.sql.Statement;
 import java.util.List;
 import java.util.Map;
 
+@Repository
 public class UsuarioRepository {
 
     private static final String SQL="SELECT * FROM usuarios ";
-    private static final String SQL_POST = "INSERT INTO usuarios (username, password, id_datos_personales) VALUES (?, ?, ?)";
+    private static final String SQL_POST = "INSERT INTO usuarios (username, password, estado, id_datos_personales) VALUES (?, ?, ? ,?)";
     private static final String SQL_GET = "SELECT * FROM usuarios WHERE id_usuario = ?";
 
     @Autowired
@@ -63,8 +65,8 @@ public class UsuarioRepository {
         return idReturn;
     }
     // GET Obtener usuario
-    public Usuario getusuario(int idusuario) {
-        Usuario usuario = jdbcTemplate.queryForObject(SQL_GET, new Object[] { idusuario }, new UsuarioRowMapper());
+    public Usuario getUsuario(int idUsuario) {
+        Usuario usuario = jdbcTemplate.queryForObject(SQL_GET, new Object[] { idUsuario }, new UsuarioRowMapper());
         if(usuario!=null){
             return usuario;
         }else{

@@ -26,7 +26,7 @@ public class PacienteService {
     private PacienteConverter pacienteConverter;
 
 
-    //Obtener pacientes
+    //Obtener lista pacienteResponse
     public List<PacienteResponse> findAll(){
         return pacienteConverter.entitiesToModels(pacienteRepository.getAll());
     }

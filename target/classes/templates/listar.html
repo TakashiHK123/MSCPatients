@@ -8,9 +8,7 @@
 </head>
 
 <body>
-<h4 class="card-title">
-    <a class="btn btn-outline-warning btn-xs float-right mx-1" th:href="@{'/listar'(format=json)}">JSON</a>
-</h4>
+
 <h1 th:text="${mensaje}"></h1>
 
 <div th:if="${pacientes.isEmpty()}">No hay pacientes en la lista!</div>

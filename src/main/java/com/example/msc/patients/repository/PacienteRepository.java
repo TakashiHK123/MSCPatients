@@ -38,12 +38,12 @@ public class PacienteRepository {
         return jdbcTemplate.query(SQL, new PacienteRowMapper());
     }
     //POST retorna un retorna el id si se genera, y si no retorna un 0 
-    public int addPacientes(int idpaciente, Date fechaIngreso, String estado){
+    public int addPacientes(int idDatosPersonales, Date fechaIngreso, String estado){
 
         KeyHolder keyHolder = new GeneratedKeyHolder();
         jdbcTemplate.update(connection -> {
             PreparedStatement preparedStatement = connection.prepareStatement(SQL_POST, Statement.RETURN_GENERATED_KEYS);
-            preparedStatement.setInt(1, idpaciente);
+            preparedStatement.setInt(1, idDatosPersonales);
             preparedStatement.setDate(2, fechaIngreso);
             preparedStatement.setString(3, estado);
             return preparedStatement;
