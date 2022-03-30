@@ -35,7 +35,9 @@ public class UsuarioRepository {
     public List<Usuario> getAll() {  //ver si se va a usar, si no se elimina
         return jdbcTemplate.query(SQL, new UsuarioRowMapper());
     }
-    //POST retorna un retorna el id si se genera, y si no retorna un 0 
+
+
+    //POST retorna el id si se genera, y si no retorna un 0
     public int addUsuarios(String nombre, String apellido, String estado, int idDatosPersonales){
 
         KeyHolder keyHolder = new GeneratedKeyHolder();

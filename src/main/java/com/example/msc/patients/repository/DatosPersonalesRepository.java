@@ -19,8 +19,8 @@ import java.util.Map;
 @Repository
 public class DatosPersonalesRepository {
 
-    private static final String SQL_POST = "INSERT INTO datospersonales (nombre, apellido, nro_documento, fecha_nacimiento, peso) VALUES (?, ?, ?, ?, ?)";
-    private static final String SQL_GET = "SELECT * FROM datospersonales WHERE id_contacto = ?";
+    private static final String SQL_POST = "INSERT INTO datos_personales (nombre, apellido, nro_documento, fecha_nacimiento, peso) VALUES (?, ?, ?, ?, ?)";
+    private static final String SQL_GET = "SELECT * FROM datos_personales WHERE id_contacto = ?";
 
     @Autowired
     private JdbcTemplate jdbcTemplate;

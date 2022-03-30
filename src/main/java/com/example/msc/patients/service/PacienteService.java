@@ -1,11 +1,7 @@
 package com.example.msc.patients.service;
 
 import com.example.msc.patients.converter.PacienteConverter;
-import com.example.msc.patients.dto.ObtenerPascientesDTO;
-import com.example.msc.patients.entity.DatoPersonal;
-import com.example.msc.patients.entity.Paciente;
 import com.example.msc.patients.model.response.PacienteResponse;
-import com.example.msc.patients.model.resquest.PacienteRequest;
 import com.example.msc.patients.repository.ContactoRepository;
 import com.example.msc.patients.repository.DatosPersonalesRepository;
 import com.example.msc.patients.repository.PacienteRepository;
@@ -28,12 +24,11 @@ public class PacienteService {
     private UsuarioRepository usuarioRepository;
     @Autowired
     private PacienteConverter pacienteConverter;
+
+
     //Obtener pacientes
     public List<PacienteResponse> findAll(){
         return pacienteConverter.entitiesToModels(pacienteRepository.getAll());
     }
-    public PacienteResponse save(PacienteRequest request){
-        //Paciente paciente = pacienteConverter.modelToEntity(request.get)
-        return null;
-    }
+
 }

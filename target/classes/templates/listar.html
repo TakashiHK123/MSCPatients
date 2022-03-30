@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8" />
+    <title th:text="${titulo}"></title>
+</head>
+
+<body>
+<h4 class="card-title">
+    <a class="btn btn-outline-warning btn-xs float-right mx-1" th:href="@{'/listar'(format=json)}">JSON</a>
+</h4>
+<h1 th:text="${mensaje}"></h1>
+
+<div th:if="${pacientes.isEmpty()}">No hay pacientes en la lista!</div>
+<table th:if="${not pacientes.isEmpty()}">
+    <thead>
+    <tr>
+        <th th:text="#{text.paciente.idPaciente}">id</th>
+        <th th:text="#{text.paciente.nombre}">nombre</th>
+        <th th:text="#{text.paciente.apellido}">apellido</th>
+        <th th:text="#{text.paciente.fechaIngreso}">fechaIngreso</th>
+        <th th:text="#{text.paciente.fechaNacimiento}">fechaNacimiento</th>
+        <th th:text="#{text.paciente.peso}">peso</th>
+        <th th:text="#{text.paciente.nro_documento}">nro_documento</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="paciente: ${pacientes}">
+        <td th:text="${paciente.idPaciente}"></td>
+        <td th:text="${paciente.nombre}"></td>
+        <td th:text="${paciente.apellido}"></td>
+        <td th:text="${paciente.fechaIngreso}"></td>
+        <td th:text="${paciente.fechaNacimiento}"></td>
+        <td th:text="${paciente.peso}"></td>
+        <td th:text="${paciente.nro_documento}"></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+
+</html>

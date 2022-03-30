@@ -16,7 +16,7 @@ import java.util.List;
 public class PacienteResponse {
 
     @JsonProperty("id")
-    private int idPacientes;
+    private int idPaciente;
     @JsonProperty("first_name")
     private String nombre;
     @JsonProperty("last_name")
@@ -29,7 +29,7 @@ public class PacienteResponse {
     private double peso;
     @JsonProperty("document_number")
     private String nro_documento;
-    @JsonProperty("contacts")
-    private List<Contacto> contacto;
+    //@JsonProperty("contacts")
+    //private List<Contacto> contactos;
 
 }
