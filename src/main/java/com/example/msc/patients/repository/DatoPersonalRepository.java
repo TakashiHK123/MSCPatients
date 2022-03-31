@@ -1,5 +1,6 @@
 package com.example.msc.patients.repository;
 
+import com.example.msc.patients.converter.DatoPersonalConverter;
 import com.example.msc.patients.entity.DatoPersonal;
 import com.example.msc.patients.rowMapper.DatosPersonaleRowMapper;
 import com.example.msc.patients.sqlerrorcode.CustomSQLErrorCodeTranslator;
@@ -17,7 +18,7 @@ import java.util.Map;
 
 
 @Repository
-public class DatosPersonalesRepository {
+public class DatoPersonalRepository {
 
     private static final String SQL_POST = "INSERT INTO datos_personales (nombre, apellido, nro_documento, fecha_nacimiento, peso) VALUES (?, ?, ?, ?, ?)";
     private static final String SQL_GET = "SELECT * FROM datos_personales WHERE id_contacto = ?";
@@ -33,16 +34,16 @@ public class DatosPersonalesRepository {
     }
 
     //retorna un retorna el id si se genera, y si no retorna un 0
-    public int addDatosPersonales(String nombre, String apellido, String nroDocumento, Date fechaNacimiento, double peso){
+    public int addDatoPersonal(DatoPersonal datoPersonal){
 
         KeyHolder keyHolder = new GeneratedKeyHolder();
         jdbcTemplate.update(connection -> {
             PreparedStatement preparedStatement = connection.prepareStatement(SQL_POST, Statement.RETURN_GENERATED_KEYS);
-            preparedStatement.setString(1, nombre);
-            preparedStatement.setString(2, apellido);
-            preparedStatement.setString(3,nroDocumento);
-            preparedStatement.setDate(4,fechaNacimiento);
-            preparedStatement.setDouble(5,peso);
+            preparedStatement.setString(1, datoPersonal.getNombre());
+            preparedStatement.setString(2, datoPersonal.getApellido());
+            preparedStatement.setString(3, datoPersonal.getNroDocumento());
+            preparedStatement.setDate(4, datoPersonal.getFechaNacimiento());
+            preparedStatement.setDouble(5, datoPersonal.getPeso());
             return preparedStatement;
 
         },keyHolder);
@@ -61,7 +62,7 @@ public class DatosPersonalesRepository {
     }
 
     //Get de datos personales del paciente
-    public DatoPersonal getDatosPersonales(int idDatosPersonales) {
+    public DatoPersonal getDatoPersonal(int idDatosPersonales) {
         DatoPersonal datosPersonales = jdbcTemplate.queryForObject(SQL_GET, new Object[] { idDatosPersonales }, new DatosPersonaleRowMapper());
         if(datosPersonales!=null){
             return datosPersonales;

@@ -4,7 +4,7 @@ package com.example.msc.patients.converter;
 import com.example.msc.patients.entity.Contacto;
 import com.example.msc.patients.entity.Paciente;
 import com.example.msc.patients.model.response.PacienteResponse;
-import com.example.msc.patients.repository.ContactoRepository;
+import com.example.msc.patients.model.resquest.PacienteRequest;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -40,6 +40,14 @@ public class PacienteConverter {
         model.setNro_documento(entity.getNroDocumento());
         //model.setContacto(contactos);
         return model;
+    }
+
+    public Paciente modelToEntity(PacienteRequest model, int idDatoPersonal, String estado){
+        Paciente entity = new Paciente();
+        entity.setIdDatosPersonales(idDatoPersonal);
+        entity.setFechaIngreso(model.getFechaIngreso());
+        entity.setEstado(estado);
+        return entity;
     }
 
 
