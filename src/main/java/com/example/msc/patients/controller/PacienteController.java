@@ -1,20 +1,24 @@
 package com.example.msc.patients.controller;
 
-
 import com.example.msc.patients.model.error.ErrorData;
 import com.example.msc.patients.model.error.ResourceError;
 import com.example.msc.patients.model.response.PacienteResponse;
 import com.example.msc.patients.model.resquest.PacienteRequest;
 import com.example.msc.patients.service.PacienteService;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletRequestWrapper;
+import jakarta.validation.Valid;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+
 import java.util.List;
+import java.util.Map;
 
 @CrossOrigin("*")
 @RestController
@@ -26,11 +30,18 @@ public class PacienteController {
     @Autowired
     private PacienteService pacienteService;
 
+
+    /*@GetMapping("/agregar")
+    public ResponseEntity<?> addPaciente(){
+        PacienteRequest pacienteRequest = new PacienteRequest();
+        return new ResponseEntity(pacienteRequest, HttpStatus.OK);
+    }*/
+
     @PostMapping("/agregar")
-    public ResponseEntity<?> addPaciente(@RequestBody PacienteRequest body, HttpServletRequest request){
+    public ResponseEntity<?> addPacienteProc(@Valid @RequestBody PacienteRequest body, HttpServletRequest request){
         try {
             PacienteResponse created = pacienteService.save(body);
-            return new ResponseEntity<>(created, HttpStatus.CREATED);
+            return new ResponseEntity(created, HttpStatus.CREATED);
         }
         catch(Exception e){
             LOGGER.error(e.getMessage(), e);
