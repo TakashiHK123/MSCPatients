@@ -2,7 +2,9 @@ package com.example.msc.patients.repository;
 
 import com.example.msc.patients.converter.DatoPersonalConverter;
 import com.example.msc.patients.entity.DatoPersonal;
+import com.example.msc.patients.entity.Paciente;
 import com.example.msc.patients.rowMapper.DatosPersonaleRowMapper;
+import com.example.msc.patients.rowMapper.PacienteRowMapper;
 import com.example.msc.patients.sqlerrorcode.CustomSQLErrorCodeTranslator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -14,12 +16,14 @@ import javax.sql.DataSource;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.Statement;
+import java.util.List;
 import java.util.Map;
 
 
 @Repository
 public class DatoPersonalRepository {
 
+    private static final String SQL="SELECT * FROM datos_personales ";
     private static final String SQL_POST = "INSERT INTO datos_personales (nombre, apellido, nro_documento, fecha_nacimiento, peso) VALUES (?, ?, ?, ?, ?)";
     private static final String SQL_GET = "SELECT * FROM datos_personales WHERE id_contacto = ?";
 
@@ -33,6 +37,9 @@ public class DatoPersonalRepository {
         jdbcTemplate.setExceptionTranslator(customSQLErrorCodeTranslator);
     }
 
+    public List<DatoPersonal> getAll() {  //ver si se va a usar, si no se elimina
+        return jdbcTemplate.query(SQL, new DatosPersonaleRowMapper());
+    }
     //retorna un retorna el id si se genera, y si no retorna un 0
     public int addDatoPersonal(DatoPersonal datoPersonal){
 

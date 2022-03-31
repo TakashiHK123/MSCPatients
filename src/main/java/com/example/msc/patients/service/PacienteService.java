@@ -33,20 +33,16 @@ public class PacienteService {
 
     //Obtener lista pacienteResponse
     public List<PacienteResponse> findAll(){
-        return pacienteConverter.entitiesToModels(pacienteRepository.getAll());
+        return pacienteConverter.entitiesToModels(pacienteRepository.getAll(), datoPersonalRepository.getAll());
     }
 
-    public PacienteResponse save(PacienteRequest request){
+    /*public PacienteResponse save(PacienteRequest request){
 
         DatoPersonal datoPersonal = datoPersonalConverter.modelToEntity(request, Boolean.TRUE);
         int idDatoPersonal = datoPersonalRepository.addDatoPersonal(datoPersonal);
-
-
         Paciente entity = pacienteConverter.modelToEntity(request, idDatoPersonal, "estado");
-
         pacienteRepository.addPacientes(entity);
-
-        return pacienteConverter.entityToModel(entity);
-    }
+        return pacienteConverter.entityToModel(entity,);
+    }*/
 
 }

@@ -17,7 +17,7 @@ import java.sql.Date;
 @NoArgsConstructor
 @Entity
 @Table(name = "pacientes")
-public class Paciente extends DatoPersonal implements Serializable {
+public class Paciente implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -35,7 +35,7 @@ public class Paciente extends DatoPersonal implements Serializable {
 
     @Basic(optional = false)
     @NotNull
-    @Column(name = "fecha_nacimiento", nullable = false)
+    @Column(name = "fecha_ingreso", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaIngreso;
 
