@@ -1,11 +1,11 @@
 package com.example.msc.patients.service;
 
-import com.example.msc.patients.converter.DatoPersonalConverter;
 import com.example.msc.patients.converter.PacienteConverter;
 import com.example.msc.patients.entity.DatoPersonal;
 import com.example.msc.patients.entity.Paciente;
 import com.example.msc.patients.model.response.PacienteResponse;
 import com.example.msc.patients.model.resquest.PacienteRequest;
+import com.example.msc.patients.model.resquest.PacienteRequestData;
 import com.example.msc.patients.repository.ContactoRepository;
 import com.example.msc.patients.repository.DatoPersonalRepository;
 import com.example.msc.patients.repository.PacienteRepository;
@@ -28,21 +28,20 @@ public class PacienteService {
     private UsuarioRepository usuarioRepository;
     @Autowired
     private PacienteConverter pacienteConverter;
-    @Autowired
-    private DatoPersonalConverter datoPersonalConverter;
 
     //Obtener lista pacienteResponse
     public List<PacienteResponse> findAll(){
         return pacienteConverter.entitiesToModels(pacienteRepository.getAll(), datoPersonalRepository.getAll());
     }
-
-    /*public PacienteResponse save(PacienteRequest request){
-
-        DatoPersonal datoPersonal = datoPersonalConverter.modelToEntity(request, Boolean.TRUE);
-        int idDatoPersonal = datoPersonalRepository.addDatoPersonal(datoPersonal);
-        Paciente entity = pacienteConverter.modelToEntity(request, idDatoPersonal, "estado");
-        pacienteRepository.addPacientes(entity);
-        return pacienteConverter.entityToModel(entity,);
-    }*/
+    //Convertimos de Paciente Request a Response
+    public PacienteResponse save(PacienteRequestData pacienteRequest){
+        DatoPersonal datoPersonal = new DatoPersonal();
+        datoPersonal = pacienteConverter.pacienteRequestToDatoPersonal(pacienteRequest);
+        int idDatoPersonal = datoPersonalRepository.addDatoPersonal(datoPersonal); //Agrega DatoPersonal y retorna el id para luego utilizar.
+        Paciente paciente = new Paciente();
+        paciente = pacienteConverter.pacienteResquestToPaciente(pacienteRequest, idDatoPersonal, "Estado");
+        pacienteRepository.addPacientes(paciente); // Agrega Paciente pero no usamos el id y lo dejamos asi.
+        return pacienteConverter.entityToModel(paciente, datoPersonal);
+    }
 
 }

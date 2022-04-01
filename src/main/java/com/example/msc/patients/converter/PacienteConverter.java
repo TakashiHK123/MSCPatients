@@ -3,7 +3,7 @@ package com.example.msc.patients.converter;
 import com.example.msc.patients.entity.DatoPersonal;
 import com.example.msc.patients.entity.Paciente;
 import com.example.msc.patients.model.response.PacienteResponse;
-import com.example.msc.patients.model.resquest.PacienteRequest;
+import com.example.msc.patients.model.resquest.PacienteRequestData;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -24,14 +24,6 @@ public class PacienteConverter {
                 }
             }
         }
-        /*entities.forEach((entity)->{
-            datoPersonals.forEach((entity2) -> {
-                models.add(entityToModel2(entity));
-                models.add(models.size()-1,entityToModel3(entity2));
-
-            });
-
-        });*/
         return models;
     }
 
@@ -49,36 +41,24 @@ public class PacienteConverter {
         return model;
     }
 
-    public PacienteResponse entityToModel2(Paciente paciente){
-        if(paciente == null)
-            return null;
-        PacienteResponse model = new PacienteResponse();
-        model.setIdPaciente(paciente.getIdPaciente());
-        model.setFechaIngreso(paciente.getFechaIngreso());
-        return model;
-    }
-
-    public PacienteResponse entityToModel3(DatoPersonal datoPersonal){
-        if(datoPersonal == null)
-            return null;
-        PacienteResponse model = new PacienteResponse();
-        model.setNombre(datoPersonal.getNombre());
-        model.setApellido(datoPersonal.getApellido());
-        model.setNro_documento(datoPersonal.getNroDocumento());
-        model.setPeso(datoPersonal.getPeso());
-        model.setFechaNacimiento(datoPersonal.getFechaNacimiento());
-        return model;
-    }
-
-
-
-    public Paciente modelToEntity(PacienteRequest model, int idDatoPersonal, String estado){
+    public Paciente pacienteResquestToPaciente(PacienteRequestData model, int idDatoPersonal, String estado){
         Paciente entity = new Paciente();
         entity.setIdDatosPersonales(idDatoPersonal);
-        entity.setFechaIngreso(model.getFechaIngreso());
+        entity.setFechaIngreso(model.getData().getFechaIngreso()); //el unico atributo del request utilizado a convertir
         entity.setEstado(estado);
         return entity;
     }
+
+    public DatoPersonal pacienteRequestToDatoPersonal(PacienteRequestData model){
+        DatoPersonal datoPersonal = new DatoPersonal();
+        datoPersonal.setNombre(model.getData().getNombre());
+        datoPersonal.setApellido(model.getData().getApellido());
+        datoPersonal.setNroDocumento(model.getData().getNro_documento());
+        datoPersonal.setFechaNacimiento(model.getData().getFechaNacimiento());
+        datoPersonal.setPeso(model.getData().getPeso());
+        return datoPersonal;
+    }
+
 
 
 }

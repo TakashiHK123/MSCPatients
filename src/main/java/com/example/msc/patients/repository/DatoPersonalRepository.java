@@ -1,10 +1,7 @@
 package com.example.msc.patients.repository;
 
-import com.example.msc.patients.converter.DatoPersonalConverter;
 import com.example.msc.patients.entity.DatoPersonal;
-import com.example.msc.patients.entity.Paciente;
 import com.example.msc.patients.rowMapper.DatosPersonaleRowMapper;
-import com.example.msc.patients.rowMapper.PacienteRowMapper;
 import com.example.msc.patients.sqlerrorcode.CustomSQLErrorCodeTranslator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
