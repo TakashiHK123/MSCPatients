@@ -3,7 +3,6 @@ package com.example.msc.patients.controller;
 import com.example.msc.patients.model.error.ErrorData;
 import com.example.msc.patients.model.error.ResourceError;
 import com.example.msc.patients.model.response.PacienteResponse;
-import com.example.msc.patients.model.resquest.PacienteRequest;
 import com.example.msc.patients.model.resquest.PacienteRequestData;
 import com.example.msc.patients.service.PacienteService;
 import jakarta.servlet.http.HttpServletRequest;
@@ -18,7 +17,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-
 @CrossOrigin("*")
 @RestController
 @RequestMapping("/pacientes")
@@ -28,7 +26,6 @@ public class PacienteController {
 
     @Autowired
     private PacienteService pacienteService;
-
 
     @PostMapping
     public ResponseEntity<?> save(@Valid @RequestBody PacienteRequestData body, HttpServletRequest request){

@@ -20,7 +20,7 @@ import java.util.Map;
 @Repository
 public class DatoPersonalRepository {
 
-    private static final String SQL="SELECT * FROM datos_personales ";
+    private static final String SQL="SELECT * FROM datos_personales";
     private static final String SQL_POST = "INSERT INTO datos_personales (nombre, apellido, nro_documento, fecha_nacimiento, peso) VALUES (?, ?, ?, ?, ?)";
     private static final String SQL_GET = "SELECT * FROM datos_personales WHERE id_contacto = ?";
 
