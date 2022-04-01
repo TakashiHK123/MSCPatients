@@ -31,7 +31,7 @@ public class PacienteConverter {
                     if(paciente.getIdDatosPersonales()==datoPersonal.getIdDatosPersonales()){
                         ContactoRepository contactoRepository = new ContactoRepository();
                         contactoAdd=contactoRepository.getContactos(datoPersonal.getIdDatosPersonales());
-                        while(contactoAdd.isEmpty()){
+                        while(contactoAdd.isEmpty()!=true){
                             contactoResponses.add(contactoConverter.contactoToContactoResponse(contactoAdd.get(0)));
                             contactoAdd.remove(0);
                         }

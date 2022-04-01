@@ -63,11 +63,12 @@ public class PacienteService {
         //Convertimos Request a entity y agregamos en la base de datos Contacto
         contactosRequest=pacienteConverter.pacienteRequestToContactoRequest(pacienteRequest);
 
-        while(contactosRequest.isEmpty()){
-            contactoRequest=contactosRequest.remove(0);
+        while(contactosRequest.isEmpty()!=true){
+            contactoRequest=contactosRequest.get(0);
             contacto = contactoConverter.contactoRequestToContacto(contactoRequest, idDatoPersonal);
             contactoRepository.addContacto(contacto);//agregamos el contacto en la base de datos
             contactoResponses.add(contactoConverter.contactoToContactoResponse(contacto));
+            contactosRequest.remove(0);
         }
         return pacienteConverter.entityToModel(paciente, datoPersonal, contactoResponses);
     }
