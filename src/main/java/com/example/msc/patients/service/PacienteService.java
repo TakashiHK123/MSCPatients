@@ -36,11 +36,11 @@ public class PacienteService {
     private ContactoConverter contactoConverter;
 
 
-
     //Obtener lista pacienteResponse
     public List<PacienteResponse> findAll(){
         return pacienteConverter.entitiesToModels(pacienteRepository.getAll(), datoPersonalRepository.getAll(), contactoRepository.getAll());
     }
+
     //Convertimos de Paciente Request a Response
     public PacienteResponse save(PacienteRequestData pacienteRequest){
         List<ContactoResponse> contactoResponses = new ArrayList<>();

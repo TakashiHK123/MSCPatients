@@ -1,10 +1,8 @@
 package com.example.msc.patients.converter;
 
 import com.example.msc.patients.entity.Contacto;
-import com.example.msc.patients.entity.DatoPersonal;
 import com.example.msc.patients.model.response.ContactoResponse;
 import com.example.msc.patients.model.resquest.ContactoRequest;
-import com.example.msc.patients.model.resquest.PacienteRequestData;
 import org.springframework.stereotype.Component;
 
 @Component

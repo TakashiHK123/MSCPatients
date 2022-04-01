@@ -1,9 +1,7 @@
 package com.example.msc.patients.repository;
 
 import com.example.msc.patients.entity.Contacto;
-import com.example.msc.patients.entity.DatoPersonal;
 import com.example.msc.patients.rowMapper.ContactoRowMapper;
-import com.example.msc.patients.rowMapper.DatosPersonaleRowMapper;
 import com.example.msc.patients.sqlerrorcode.CustomSQLErrorCodeTranslator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -51,6 +49,7 @@ public class ContactoRepository {
             return null;
         }
     }
+
     // retorna el contacto creado con el id generado en la base de datos
     public int addContacto(Contacto contacto){
 

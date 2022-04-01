@@ -21,7 +21,7 @@ public class PacienteConverter {
             return new ArrayList<>();
         }
 
-        List<PacienteResponse> models = new ArrayList<>();
+        List<PacienteResponse> pacienteResponses = new ArrayList<>();
         List<Contacto> contactoAdd = new ArrayList<>();
         List<ContactoResponse> contactoResponses = new ArrayList<>();
         ContactoConverter contactoConverter = new ContactoConverter();
@@ -35,11 +35,11 @@ public class PacienteConverter {
                             contactoResponses.add(contactoConverter.contactoToContactoResponse(contactoAdd.get(0)));
                             contactoAdd.remove(0);
                         }
-                        models.add(entityToModel(paciente, datoPersonal, contactoResponses));
+                        pacienteResponses.add(entityToModel(paciente, datoPersonal, contactoResponses));
                     }
             }
         }
-        return models;
+        return pacienteResponses;
     }
 
     public PacienteResponse entityToModel(Paciente paciente, DatoPersonal datoPersonal, List<ContactoResponse> contactoResponse){
@@ -80,7 +80,5 @@ public class PacienteConverter {
         contactos=model.getData().getContactosRequest();
         return contactos;
     }
-
-
 
 }
