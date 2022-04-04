@@ -7,7 +7,6 @@ import com.example.msc.patients.model.response.ContactoResponse;
 import com.example.msc.patients.model.response.PacienteResponse;
 import com.example.msc.patients.model.resquest.ContactoRequest;
 import com.example.msc.patients.model.resquest.PacienteRequestData;
-import com.example.msc.patients.repository.ContactoRepository;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -21,19 +20,19 @@ public class PacienteConverter {
             return new ArrayList<>();
         }
 
+
         List<PacienteResponse> pacienteResponses = new ArrayList<>();
-        List<Contacto> contactoAdd = new ArrayList<>();
-        List<ContactoResponse> contactoResponses = new ArrayList<>();
         ContactoConverter contactoConverter = new ContactoConverter();
+
 
         for(Paciente paciente : entities){
             for(DatoPersonal datoPersonal : datoPersonals){
-                    if(paciente.getIdDatosPersonales()==datoPersonal.getIdDatosPersonales()){
-                        ContactoRepository contactoRepository = new ContactoRepository();
-                        contactoAdd=contactoRepository.getContactos(datoPersonal.getIdDatosPersonales());
-                        while(contactoAdd.isEmpty()!=true){
-                            contactoResponses.add(contactoConverter.contactoToContactoResponse(contactoAdd.get(0)));
-                            contactoAdd.remove(0);
+                    if(paciente.getIdDatosPersonales() == datoPersonal.getIdDatosPersonales()) {
+                        List<ContactoResponse> contactoResponses = new ArrayList<>();
+                        for(Contacto contacto : contactos){
+                            if(contacto.getIdDatosPersonales() == paciente.getIdDatosPersonales()){
+                                contactoResponses.add(contactoConverter.contactoToContactoResponse(contacto));
+                            }
                         }
                         pacienteResponses.add(entityToModel(paciente, datoPersonal, contactoResponses));
                     }
