@@ -22,6 +22,7 @@ public class ContactoRepository {
     private static final String SQL_INSERT = "INSERT INTO contactos (tipo, valor, id_datos_personales) VALUES (?, ?, ?)";
     private static final String SQL_GET = "SELECT * FROM contactos WHERE id_datos_personales=?";
     private static final String SQL = "SELECT * FROM contactos";
+
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
@@ -39,17 +40,6 @@ public class ContactoRepository {
     public int addContactoJDBC(Contacto contacto) {
         return jdbcTemplate.update(SQL_INSERT, contacto.getTipo(), contacto.getValor(), contacto.getIdDatosPersonales());
     }
-
-    //Buscar todos los contactos por el idDatosPersonales coincidentes.
-    public List<Contacto> getContactos(int idDatosPersonales) {
-        List<Contacto> contactos = jdbcTemplate.query(SQL_GET, new Object[] { idDatosPersonales }, new ContactoRowMapper());
-        if(contactos!=null){
-            return contactos;
-        }else{
-            return null;
-        }
-    }
-
     // retorna el contacto creado con el id generado en la base de datos
     public int addContacto(Contacto contacto){
 

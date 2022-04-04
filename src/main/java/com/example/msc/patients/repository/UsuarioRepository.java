@@ -40,15 +40,15 @@ public class UsuarioRepository {
 
 
     //POST retorna el id si se genera, y si no retorna un 0
-    public int addUsuarios(String nombre, String apellido, String estado, int idDatosPersonales){
+    public int addUsuarios(Usuario usuario){
 
         KeyHolder keyHolder = new GeneratedKeyHolder();
         jdbcTemplate.update(connection -> {
             PreparedStatement preparedStatement = connection.prepareStatement(SQL_POST, Statement.RETURN_GENERATED_KEYS);
-            preparedStatement.setString(1, nombre);
-            preparedStatement.setString(2, apellido);
-            preparedStatement.setString(3, estado);
-            preparedStatement.setInt(4, idDatosPersonales);
+            preparedStatement.setString(1, usuario.getUsername());
+            preparedStatement.setString(2, usuario.getPassword());
+            preparedStatement.setString(3, usuario.getEstado());
+            preparedStatement.setInt(4, usuario.getIdDatosPersonales());
             return preparedStatement;
         },keyHolder);
         Integer id = (Integer) keyHolder.getKeys()

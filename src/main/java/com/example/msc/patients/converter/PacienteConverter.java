@@ -20,10 +20,8 @@ public class PacienteConverter {
             return new ArrayList<>();
         }
 
-
         List<PacienteResponse> pacienteResponses = new ArrayList<>();
         ContactoConverter contactoConverter = new ContactoConverter();
-
 
         for(Paciente paciente : entities){
             for(DatoPersonal datoPersonal : datoPersonals){

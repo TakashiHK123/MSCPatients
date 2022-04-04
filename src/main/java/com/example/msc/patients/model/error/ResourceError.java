@@ -29,10 +29,18 @@ public class ResourceError {
         return error;
     }
 
-    public static ResourceError notFound(String description){
+    public static ResourceError parameterInvalid(String description){
         ResourceError error = new ResourceError();
-        error.setErrCode(HttpStatus.NOT_FOUND.value());
-        error.setErrDescription(HttpStatus.NOT_FOUND.name());
+        error.setErrCode(HttpStatus.UNPROCESSABLE_ENTITY.value());
+        error.setErrDescription(HttpStatus.UNPROCESSABLE_ENTITY.name());
+        error.setRefDescription(description);
+        return error;
+    }
+
+    public static ResourceError created(String description){
+        ResourceError error = new ResourceError();
+        error.setErrCode(HttpStatus.CREATED.value());
+        error.setErrDescription(HttpStatus.CREATED.name());
         error.setRefDescription(description);
         return error;
     }

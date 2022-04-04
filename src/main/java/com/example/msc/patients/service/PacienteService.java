@@ -5,6 +5,7 @@ import com.example.msc.patients.converter.PacienteConverter;
 import com.example.msc.patients.entity.Contacto;
 import com.example.msc.patients.entity.DatoPersonal;
 import com.example.msc.patients.entity.Paciente;
+import com.example.msc.patients.entity.Usuario;
 import com.example.msc.patients.model.response.ContactoResponse;
 import com.example.msc.patients.model.response.PacienteResponse;
 import com.example.msc.patients.model.resquest.ContactoRequest;
@@ -49,6 +50,7 @@ public class PacienteService {
         List<ContactoRequest> contactosRequest = new ArrayList<>();
         Paciente paciente = new Paciente();
         ContactoRequest contactoRequest = new ContactoRequest();
+        Usuario usuario = new Usuario();
 
         //Convertimos request a entity
         datoPersonal = pacienteConverter.pacienteRequestToDatoPersonal(pacienteRequest);
@@ -59,6 +61,13 @@ public class PacienteService {
         paciente = pacienteConverter.pacienteResquestToPaciente(pacienteRequest, idDatoPersonal, "Estado");
         //Agregamos en la base de datos en la tabla Paciente
         pacienteRepository.addPacientes(paciente);
+
+        //Agregamos unos usuarios tambien, aunque no nos pide el contrato para luego modificarlo, pero manualmente desde aca
+        usuario.setUsername("NombreUsuario");
+        usuario.setPassword("1234asdf");
+        usuario.setEstado("Estado");
+        usuario.setIdDatosPersonales(idDatoPersonal);
+        usuarioRepository.addUsuarios(usuario);
 
         //Convertimos Request a entity y agregamos en la base de datos Contacto
         contactosRequest=pacienteConverter.pacienteRequestToContactoRequest(pacienteRequest);
