@@ -32,21 +32,19 @@ public class PacienteController {
 
     @PostMapping
     public ResponseEntity<?> save(@Valid @RequestBody PacienteRequestData body, HttpServletRequest request){
-
                 try {
                     PacienteResponse pacienteResponse = pacienteService.save(body);
                     return ResponseEntity.status(HttpStatus.CREATED)
                             .body(new CreateData(ResourceCreate.patientCreated("Patient created")));
-                } catch(HttpClientErrorException.UnprocessableEntity ex){
-                    LOGGER.error(ex.getMessage(), ex);
+                } catch(HttpClientErrorException.UnprocessableEntity e){
+                    LOGGER.error(e.getMessage(), e);
                     return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY)
-                            .body(new ErrorData(ResourceError.parameterInvalid(ex.getMessage())));
+                            .body(new ErrorData(ResourceError.parameterInvalid(e.getMessage())));
                 } catch (Exception e) {
                     LOGGER.error(e.getMessage(), e);
                     return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                             .body(new ErrorData(ResourceError.internalServerError(e.getMessage())));
                 }
-
     }
 
     @GetMapping
