@@ -50,7 +50,7 @@ public class PacienteRepository {
         },keyHolder);
         Integer id = (Integer) keyHolder.getKeys()
                 .entrySet().stream()
-                .filter(m  -> m.getKey().equalsIgnoreCase("id_paciente"))
+                .filter(m  -> m.getKey().equalsIgnoreCase("id_pacientes"))
                 .map(Map.Entry::getValue)
                 .findFirst().orElse(null);
         int idReturn=0;

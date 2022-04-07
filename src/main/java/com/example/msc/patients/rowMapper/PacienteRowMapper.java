@@ -12,7 +12,7 @@ public class PacienteRowMapper implements RowMapper<Paciente> {
 public Paciente mapRow(final ResultSet resultSet, final int rowNum) throws SQLException {
 
         final Paciente pacientes= new Paciente();
-        pacientes.setIdPaciente(resultSet.getInt("id_paciente"));
+        pacientes.setIdPaciente(resultSet.getInt("id_pacientes"));
         pacientes.setIdDatosPersonales(resultSet.getInt("id_datos_personales"));
         pacientes.setFechaIngreso(resultSet.getDate("fecha_ingreso"));
         pacientes.setEstado(resultSet.getString("estado"));
